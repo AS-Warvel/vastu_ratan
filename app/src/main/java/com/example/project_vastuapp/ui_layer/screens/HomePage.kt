@@ -1,65 +1,112 @@
 package com.example.project_vastuapp.ui_layer.screens
 
 import AddFurnitureObjectDialogBox
-import FurnitureInput
-import VastuAppViewModel
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
+import android.Manifest
+import android.util.Log
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
-import androidx.compose.ui.unit.dp
-import com.example.project_vastuapp.ui.theme.background
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.project_vastuapp.ui_layer.widgets.CheckVastuButton
-import com.example.project_vastuapp.ui_layer.widgets.VastuLogo
 import com.example.project_vastuapp.ui_layer.widgets.reusable_components.AppBar
+import com.example.project_vastuapp.viewmodel.VastuAppViewModel
+import com.example.project_vastuapp.viewmodel.VastuModeState
 
+/**
+ * HomePage - Entry point with navigation logic only
+ * Simplified flow: Check Vastu opens dialog directly, no intermediate screen
+ */
 @ExperimentalMaterial3Api
 @Composable
 fun HomePage(
-    myViewModel: VastuAppViewModel = viewModel(),
+    myViewModel: VastuAppViewModel = viewModel()
 ) {
-    var addFurnitureObjects by remember { mutableStateOf(false) }
-    var setFurnitureObjects: (List<FurnitureInput>) -> Unit = { furnitureInputObjects ->
-        addFurnitureObjects = false
-        myViewModel.setFurnitureInputObjects(furnitureInputObjects)
-        myViewModel.navigateTo("Result Screen")
-    }
-    var cancelAddFurnitureDialogBox = {
-        addFurnitureObjects = false
-    }
+    val currentMode by myViewModel.currentMode.collectAsState()
+    val lifecycleOwner = LocalLifecycleOwner.current
+    val context = LocalContext.current
 
-    Column {
-        AppBar(showActions = true)
-        Column (Modifier.fillMaxSize().background(background),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Spacer(Modifier.height(150.dp))
-            Box(
-                modifier = Modifier.padding(16.dp).scale(1.35f),
-            ){
-                VastuLogo()
-            }
-            Spacer(Modifier.height(280.dp))
-            CheckVastuButton(enableAddFurnitureScreen = {addFurnitureObjects = true})
+    // Dialog state for Check Vastu
+    var showAddFurnitureDialog by remember { mutableStateOf(false) }
 
-            if(addFurnitureObjects) {
-                AddFurnitureObjectDialogBox(sendFurnitureObjects = setFurnitureObjects, cancelOperation = cancelAddFurnitureDialogBox)
+    // Camera permission launcher
+    val cameraPermissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission(),
+        onResult = { isGranted ->
+            if (isGranted) {
+                myViewModel.setMode(VastuModeState.CameraScan)
+            } else {
+                Log.e("HomePage", "Camera permission denied.")
+                myViewModel.setMode(VastuModeState.SelectMode)
             }
         }
+    )
+
+    // Request camera permission when needed
+    LaunchedEffect(currentMode) {
+        if (currentMode is VastuModeState.CameraScan) {
+            val permissionStatus = androidx.core.content.ContextCompat.checkSelfPermission(
+                context, Manifest.permission.CAMERA
+            )
+
+            if (permissionStatus != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
+            }
+        }
+    }
+
+    // Main navigation structure
+    Column(modifier = Modifier.fillMaxSize()) {
+        AppBar(showActions = true)
+
+        when (currentMode) {
+            VastuModeState.SelectMode, VastuModeState.ManualInput -> {
+                // Home screen with both buttons
+                HomeScreen(
+                    onCheckVastu = {
+                        showAddFurnitureDialog = true
+                    },
+                    onCameraScan = {
+                        val permissionStatus = androidx.core.content.ContextCompat.checkSelfPermission(
+                            context,
+                            Manifest.permission.CAMERA
+                        )
+                        if (permissionStatus == android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                            myViewModel.setMode(VastuModeState.CameraScan)
+                        } else {
+                            cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
+                        }
+                    }
+                )
+            }
+
+            VastuModeState.CameraScan -> {
+                // Camera scan screen
+                CameraScanScreen(
+                    viewModel = myViewModel,
+                    lifecycleOwner = lifecycleOwner,
+                    onBack = myViewModel::resetMode
+                )
+            }
+        }
+    }
+
+    // Show furniture dialog when Check Vastu is clicked (outside Column)
+    if (showAddFurnitureDialog) {
+        AddFurnitureObjectDialogBox(
+            sendFurnitureObjects = { furnitureInputObjects ->
+                Log.d("HomePage", "Received ${furnitureInputObjects.size} furniture objects")
+                showAddFurnitureDialog = false
+                myViewModel.setFurnitureInputObjects(furnitureInputObjects)
+                myViewModel.evaluateFurnitureList()
+            },
+            cancelOperation = {
+                showAddFurnitureDialog = false
+            }
+        )
     }
 }

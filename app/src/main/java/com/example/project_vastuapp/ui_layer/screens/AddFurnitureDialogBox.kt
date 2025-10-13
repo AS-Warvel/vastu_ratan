@@ -26,6 +26,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.project_vastuapp.datalayer.FurnitureInput
 import com.example.project_vastuapp.ui.theme.black
 import com.example.project_vastuapp.ui.theme.dialogBoxButtonsColor
 import com.example.project_vastuapp.ui.theme.dialogueBox
@@ -47,7 +48,7 @@ fun AddFurnitureObjectDialogBox(sendFurnitureObjects: (List<FurnitureInput>) -> 
     val furnitureInputList = remember { mutableStateListOf<FurnitureInput>() }
 
     val directions = listOf("North", "East", "South", "West")
-    val furnitureTypes = listOf("Sofa", "Study Table", "Bed", "Chair", "Lamp")
+    val furnitureTypes = listOf("Sofa", "Study Table", "Bed", "Chair", "Lamp","mirror","wardrobe")
 
     AlertDialog(
         modifier = Modifier.fillMaxWidth()

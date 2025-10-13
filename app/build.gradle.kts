@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -58,4 +59,27 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    // CameraX dependencies
+    val camerax_version = "1.3.1" // Use a stable version
+    implementation("androidx.camera:camera-core:$camerax_version")
+    implementation("androidx.camera:camera-camera2:$camerax_version")
+    implementation("androidx.camera:camera-lifecycle:$camerax_version")
+    implementation("androidx.camera:camera-view:$camerax_version")
+
+    // ML Kit Object Detection dependencies
+    // This is the dependency for on-device object detection
+    implementation("com.google.mlkit:object-detection:17.0.1")
+
+    // ML Kit Defaults (contains the ObjectDetectorOptions, etc.)
+    // Ensure you have the ML Kit defaults library for the options class.
+    implementation("com.google.mlkit:object-detection-common:17.0.0")
+
+    // Kotlin Coroutines for Flow/Channel
+    val coroutines_version = "1.8.1" // <== UPDATED VERSION HERE
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version")
+
 }

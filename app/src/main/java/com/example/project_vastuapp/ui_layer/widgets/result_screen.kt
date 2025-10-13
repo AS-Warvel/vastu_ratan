@@ -25,6 +25,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.project_vastuapp.datalayer.FurnitureOutput
 import com.example.project_vastuapp.ui.theme.black
 import com.example.project_vastuapp.ui.theme.buttonContainer
 import com.example.project_vastuapp.ui.theme.darkGreen
