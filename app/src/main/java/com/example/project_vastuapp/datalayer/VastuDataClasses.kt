@@ -5,7 +5,7 @@ data class FurnitureInput(
     val furnitureType: String,
     val direction: String
 )
-
+//sas
 data class FurnitureOutput (
     var furnitureType: String,
     var reason: String,
