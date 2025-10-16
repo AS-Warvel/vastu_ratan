@@ -75,7 +75,7 @@ import com.example.project_vastuapp.ui_layer.state.getIconForFurniture
 fun NewResultsScreen(navController: NavController, viewModel: RoomViewModel = viewModel()) {
     val uiState by viewModel.uiState.collectAsState()
     print(uiState.allItems)
-    val inspectedItems = uiState.allItems.filter { it.currentSelectedDirection != "Not Present" }
+    val inspectedItems = uiState.itemsForSelectedRoom.filter { it.currentSelectedDirection != "Not Present" }
     print(inspectedItems)
     Scaffold(
         topBar = {

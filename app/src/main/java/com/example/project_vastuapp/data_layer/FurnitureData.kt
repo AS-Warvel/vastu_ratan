@@ -1,10 +1,20 @@
 package com.example.project_vastuapp.data_layer
 
-class FurnitureDataSource {
-    var furnitureObjects: List<FurnitureDataModel>? = null
+object FurnitureDataSource {
+    var furnitureObjects: List<FurnitureDataModel> = emptyList()
 
     fun getFurnitureData(): List<FurnitureDataModel> {
-        return listOf(
+        if (furnitureObjects.isNotEmpty()) {
+            return furnitureObjects
+        }
+
+//        Add Firebase Code Here...
+//
+//        Firebasecode...
+//        [This fun should return list of FurnittureDataModel, store in furnitureObjects then return]
+//
+//        Delete the following code after adding firebase
+        val listOfFurnitures = listOf(
             FurnitureDataModel(room ="Living Room",furnitureType = "Sofa Set", direction = "South or West wall", benefits = "Promotes stability and grounding in social interactions.", avoid = "North-East – blocks spiritual and energy flow."),
             FurnitureDataModel(room = "Living Room",furnitureType = "TV / Entertainment Unit",direction = "South-East wall", benefits = "Keeps electronic energy aligned with Fire element.", avoid = "North wall – causes restlessness."),
             FurnitureDataModel(room = "Living Room",furnitureType = "Main Entrance Door",direction = "North or East", benefits = "Attracts positive energy and prosperity.", avoid = "South-West – brings obstacles and conflict."),
@@ -26,21 +36,8 @@ class FurnitureDataSource {
             FurnitureDataModel(room = "Office / Study Room",furnitureType = "Study / Work Desk", direction ="East or North facing", benefits = "Improves focus, clarity, and concentration.", avoid = "South – drains energy and motivation.")
         )
 
-//        if (furnitureObjects != null) {
-//            return furnitureObjects
-//        } else {
-//            var listFurniture = mutableListOf<FurnitureDataModel>()
-//            listFurniture.add(
-//                FurnitureDataModel(
-//                    "Main Entrance Door",
-//                    "North or East",
-//                    "Attracts positive energy and prosperity.",
-//                    "South-West – brings obstacles and conflict."
-//                    "Living Room"
-//                )
-//            )
-//            return listFurniture;
-//        }
+        furnitureObjects = listOfFurnitures
+        return listOfFurnitures
     }
 }
 //        return listOf(

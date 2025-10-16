@@ -5,6 +5,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.*
 import com.example.project_vastuapp.data_layer.FurnitureDataSource
 
+//import com.example.project_vastuapp.data_layer.FurnitureDataSource
+
 data class VastuObject(
     val room: String,
     val furnitureType: String,
@@ -50,8 +52,7 @@ object FurnitureInspectionDataSource {
     }
 
     fun getFurnitureObjects() : List<VastuObject> {
-        val data: FurnitureDataSource = FurnitureDataSource()
-        val listFurnitureData = data.getFurnitureData()
+        val listFurnitureData = FurnitureDataSource.getFurnitureData()
 
         val furnitureList = mutableListOf<VastuObject>()
         for (item in listFurnitureData) {
@@ -71,8 +72,7 @@ object FurnitureInspectionDataSource {
     }
 
     fun getRoomFurnitureObjects() : List<RoomFurnitureItem> {
-        val data: FurnitureDataSource = FurnitureDataSource()
-        val listFurnitureData = data.getFurnitureData()
+        val listFurnitureData = FurnitureDataSource.getFurnitureData()
 
         val furnitureList = mutableListOf<RoomFurnitureItem>()
         for (item in listFurnitureData) {
@@ -93,8 +93,7 @@ object FurnitureInspectionDataSource {
     }
 
     fun getObjectsForPlacement() : List<PlacementVastuObject> {
-        val data: FurnitureDataSource = FurnitureDataSource()
-        val listFurnitureData = data.getFurnitureData()
+        val listFurnitureData = FurnitureDataSource.getFurnitureData()
 
         val furnitureList = mutableListOf<PlacementVastuObject>()
         for (item in listFurnitureData) {
