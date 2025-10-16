@@ -39,6 +39,8 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -58,10 +60,15 @@ import com.example.project_vastuapp.ui.theme.ColorLightBeige
 import com.example.project_vastuapp.ui.theme.ColorSand
 import com.example.project_vastuapp.ui.theme.ColorTerracotta
 import com.example.project_vastuapp.ui_layer.state.VastuTipsViewModel
+import com.example.project_vastuapp.R
 
 // --- 2. Home Screen (Left UI) ---
 @Composable
 fun HomeScreen(navController: NavController) {
+    val titleFont = FontFamily(
+        Font(R.font.thephir_bold)
+    )
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -116,7 +123,7 @@ fun HomeScreen(navController: NavController) {
                 horizontalArrangement = Arrangement.Center
             ) {
                 Spacer(modifier = Modifier.width(8.dp))
-                Text("Vastu Ratan", style = MaterialTheme.typography.headlineLarge)
+                Text("Vastu Ratan", fontFamily = titleFont, fontSize = 46.sp)
             }
 
             Spacer(modifier = Modifier.height(150.dp))

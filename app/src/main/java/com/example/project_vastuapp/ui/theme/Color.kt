@@ -32,5 +32,5 @@ val BackgroundBeige = Color(0xFFF5F0E8)
 val DarkText = Color(0xFF333333)
 val LightAccent = Color(0xFFD9AC7A) // Not used in this specific layout, but defined
 
-val SuccessGreen = Color(0xFF4CAF50)
-val ErrorRed = Color(0xFFD32F2F)
+val SuccessGreen = Color(0xFFCEFAD0)
+val ErrorRed = Color(0xFFFFD6D1)

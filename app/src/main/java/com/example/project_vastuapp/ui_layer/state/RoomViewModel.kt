@@ -12,8 +12,10 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import org.json.JSONArray
 import java.util.UUID
 
@@ -54,15 +56,19 @@ class RoomViewModel : ViewModel() {
     }
 
     private fun loadFurnitureData() {
-        val allItems = FurnitureInspectionDataSource.getRoomFurnitureObjects()
-        val rooms = allItems.map { it.room }.distinct()
-        val initialRoom = rooms.firstOrNull() ?: ""
-        _uiState.value = RoomUiState(
-            allItems = allItems,
-            rooms = rooms,
-            selectedRoom = initialRoom,
-            itemsForSelectedRoom = allItems.filter { it.room == initialRoom }
-        )
+            viewModelScope.launch {
+                val allItems = FurnitureInspectionDataSource.getRoomFurnitureObjects()
+                val rooms = allItems.map { it.room }.distinct()
+                val initialRoom = rooms.firstOrNull() ?: ""
+                _uiState.value = RoomUiState(
+                    allItems = allItems,
+                    rooms = rooms,
+                    selectedRoom = initialRoom,
+                    itemsForSelectedRoom = allItems.filter { it.room == initialRoom }
+                )
+            }
+//        val allItems = FurnitureInspectionDataSource.getRoomFurnitureObjects()
+
     }
 
     fun getDirectionOptions(): List<String> = directions
@@ -112,13 +118,30 @@ class RoomViewModel : ViewModel() {
 
 class FurnitureViewModel : ViewModel() {
 
-    private val _allObjects = FurnitureInspectionDataSource.getFurnitureObjects()
-    val rooms: List<String> = _allObjects.map { it.room }.distinct()
+    private var _allObjects: List<VastuObject> = emptyList()
+    var rooms: List<String> = emptyList<String>()
+//    val rooms: List<String> = allObjects.value.map { it.room }.distinct()
 
-    private val _selectedRoom = MutableStateFlow(rooms.first())
-    val selectedRoom: StateFlow<String> = _selectedRoom.asStateFlow()
 
-    val furnitureForSelectedRoom: StateFlow<List<VastuObject>> =
+    private val _selectedRoom = MutableStateFlow<String>("dummy")
+    var selectedRoom: StateFlow<String> = _selectedRoom.asStateFlow()
+
+    init {
+        load()
+    }
+    private fun load() {
+        viewModelScope.launch {
+            _allObjects = FurnitureInspectionDataSource.getFurnitureObjects()
+            rooms = _allObjects.map { it.room }.distinct()
+//            _selectedRoom.value = rooms.value.first()
+            selectRoom(rooms.first())
+            furnitureForSelectedRoom = selectedRoom.combine(MutableStateFlow(_allObjects)) { room, objects ->
+                objects.filter { it.room == room }
+            }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+        }
+    }
+
+    var furnitureForSelectedRoom: StateFlow<List<VastuObject>> =
         selectedRoom.combine(MutableStateFlow(_allObjects)) { room, objects ->
             objects.filter { it.room == room }
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
@@ -126,10 +149,7 @@ class FurnitureViewModel : ViewModel() {
     private val _selectedFurniture = MutableStateFlow<VastuObject?>(null)
     val selectedFurniture: StateFlow<VastuObject?> = _selectedFurniture.asStateFlow()
 
-    init {
-        // Initialize with the first furniture item of the first room
-        selectRoom(rooms.first())
-    }
+
 
     fun selectRoom(room: String) {
         _selectedRoom.update { room }

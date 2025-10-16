@@ -29,6 +29,7 @@ object FurnitureInspectionDataSource {
         return when {
             objectName.contains("Sofa", ignoreCase = true) -> Icons.Outlined.Chair
             objectName.contains("Bed", ignoreCase = true) -> Icons.Outlined.Bed
+            objectName.contains("Plants", ignoreCase = true) -> Icons.Outlined.Yard
             objectName.contains("TV", ignoreCase = true) -> Icons.Outlined.Tv
             objectName.contains("Table", ignoreCase = true) -> Icons.Outlined.TableRestaurant
             objectName.contains("Door", ignoreCase = true) -> Icons.Outlined.DoorFront
@@ -36,7 +37,6 @@ object FurnitureInspectionDataSource {
             objectName.contains("Cabinet", ignoreCase = true) || objectName.contains("Wardrobe", ignoreCase = true) -> Icons.Outlined.Inventory2
             objectName.contains("Mirror", ignoreCase = true) -> Icons.Outlined.FilterFrames
             objectName.contains("Aquarium", ignoreCase = true) -> Icons.Outlined.Water
-            objectName.contains("Plants", ignoreCase = true) -> Icons.Outlined.Yard
             objectName.contains("Safe", ignoreCase = true) -> Icons.Outlined.Savings
             objectName.contains("Stove", ignoreCase = true) -> Icons.Outlined.OutdoorGrill
             objectName.contains("Sink", ignoreCase = true) -> Icons.Outlined.Countertops
@@ -47,11 +47,19 @@ object FurnitureInspectionDataSource {
             objectName.contains("Computer", ignoreCase = true) -> Icons.Outlined.Laptop
             objectName.contains("Lamp", ignoreCase = true) -> Icons.Outlined.Lightbulb
             objectName.contains("Dustbin", ignoreCase = true) -> Icons.Outlined.Delete
+            objectName.contains("Document", ignoreCase = true) -> Icons.Outlined.Folder
+            objectName.contains("Meditation", ignoreCase = true) -> Icons.Outlined.CenterFocusStrong
+            objectName.contains("Board", ignoreCase = true) -> Icons.Outlined.Draw
+            objectName.contains("Water", ignoreCase = true) -> Icons.Outlined.WaterDrop
+            objectName.contains("Fan", ignoreCase = true) -> Icons.Outlined.WindPower
+            objectName.contains("Portraits", ignoreCase = true) -> Icons.Outlined.Portrait
+
+
             else -> Icons.Outlined.Home
         }
     }
 
-    fun getFurnitureObjects() : List<VastuObject> {
+    suspend fun getFurnitureObjects() : List<VastuObject> {
         val listFurnitureData = FurnitureDataSource.getFurnitureData()
 
         val furnitureList = mutableListOf<VastuObject>()
@@ -71,7 +79,7 @@ object FurnitureInspectionDataSource {
         return furnitureList
     }
 
-    fun getRoomFurnitureObjects() : List<RoomFurnitureItem> {
+    suspend fun getRoomFurnitureObjects() : List<RoomFurnitureItem> {
         val listFurnitureData = FurnitureDataSource.getFurnitureData()
 
         val furnitureList = mutableListOf<RoomFurnitureItem>()
@@ -92,7 +100,7 @@ object FurnitureInspectionDataSource {
         return furnitureList
     }
 
-    fun getObjectsForPlacement() : List<PlacementVastuObject> {
+    suspend fun getObjectsForPlacement() : List<PlacementVastuObject> {
         val listFurnitureData = FurnitureDataSource.getFurnitureData()
 
         val furnitureList = mutableListOf<PlacementVastuObject>()

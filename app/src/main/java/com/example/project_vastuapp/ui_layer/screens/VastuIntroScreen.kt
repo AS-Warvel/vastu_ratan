@@ -1,6 +1,7 @@
 package com.example.project_vastuapp.ui_layer.screens
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -37,8 +38,10 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.res.painterResource
 import com.example.project_vastuapp.ui.theme.ColorDarkOlive
 import com.example.project_vastuapp.ui.theme.ColorSageGreen
+import com.example.project_vastuapp.R
 
 @ExperimentalMaterial3Api
 @Composable
@@ -153,15 +156,14 @@ fun VastuIntroScreen(navController: NavController) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(180.dp)
+                        .size(240.dp)
                         .clip(RoundedCornerShape(12.dp))
-                        .background(PrimaryGreen.copy(alpha = 0.1f)),
+                        .background(Color.Transparent),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(
-                        text = "Image Placeholder",
-                        color = PrimaryGreen,
-                        fontWeight = FontWeight.SemiBold
+                    Image(
+                        painter = painterResource(R.drawable.vastu_directions),
+                        contentDescription = "Vastu Directions Image"
                     )
                 }
 

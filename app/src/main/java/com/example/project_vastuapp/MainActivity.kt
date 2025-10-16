@@ -47,6 +47,8 @@ import com.example.project_vastuapp.ui_layer.screens.VastuIntroScreen
 import com.example.project_vastuapp.ui_layer.screens.VastuTipsScreen
 import com.example.project_vastuapp.ui_layer.screens.VastuCompassScreen
 import com.example.project_vastuapp.ui_layer.state.RoomViewModel
+import com.example.project_vastuapp.ui_layer.state.FurnitureViewModel
+
 
 // Main entry point for the App
 @OptIn(ExperimentalMaterial3Api::class)
@@ -55,14 +57,17 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             VastuAppTheme {
+
                 val navController = rememberNavController()
                 val RoomInspectionViewModel: RoomViewModel = viewModel()
+                val furnitureViewModel: FurnitureViewModel = viewModel()
+
                 NavHost(navController = navController, startDestination = "home") {
                     composable("home") { HomeScreen(navController) }
                     composable("VastuIntro") { VastuIntroScreen(navController) }
                     composable("VastuTips") { VastuTipsScreen(navController = navController) }
                     composable("Geeta") { LifeLessonsScreen(navController = navController) }
-                    composable("Furniture") { FurnitureInspectionScreen(navController = navController) }
+                    composable("Furniture") { FurnitureInspectionScreen(navController = navController, furnitureViewModel = furnitureViewModel) }
                     composable("Results") { NewResultsScreen(navController = navController, viewModel = RoomInspectionViewModel) }
                     composable("Room") { RoomInspectionScreen(navController = navController, viewModel = RoomInspectionViewModel) }
                     composable("Compass") { VastuCompassScreen(navController = navController) }

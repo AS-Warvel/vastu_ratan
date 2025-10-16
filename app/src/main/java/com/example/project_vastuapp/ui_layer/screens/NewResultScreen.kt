@@ -133,7 +133,7 @@ fun NewResultsScreen(navController: NavController, viewModel: RoomViewModel = vi
 @Composable
 fun ResultCard(item: RoomFurnitureItem, isCorrect: Boolean) {
     var expanded by remember { mutableStateOf(false) }
-    val cardColor = if (isCorrect) SuccessGreen.copy(alpha = 0.1f) else ErrorRed.copy(alpha = 0.1f)
+    val cardColor = if (isCorrect) SuccessGreen else ErrorRed
     val borderColor = if (isCorrect) SuccessGreen else ErrorRed
 
     Card(
@@ -143,7 +143,6 @@ fun ResultCard(item: RoomFurnitureItem, isCorrect: Boolean) {
         shape = RoundedCornerShape(12.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         colors = CardDefaults.cardColors(containerColor = cardColor),
-        border = BorderStroke(1.dp, borderColor)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             // Collapsed View

@@ -40,6 +40,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import android.widget.Toast
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.width
+import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavController
 import kotlin.math.PI
 import kotlin.math.atan2
@@ -64,24 +68,30 @@ fun VastuCompassScreen(navController: NavController) {
                 .fillMaxSize()
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
         ) {
-            Text(
-                text = "Set Plot Direction",
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF5D4037)
-            )
-            Spacer(modifier = Modifier.height(8.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Spacer(modifier = Modifier.width(8.dp))
+                Text("Set Plot Direction", style = MaterialTheme.typography.headlineLarge)
+            }
+
+            Spacer(modifier = Modifier.height(120.dp))
             Text(
                 text = "Drag the compass to align with the North direction of your plot.",
                 fontSize = 16.sp,
+                textAlign = TextAlign.Center,
                 color = Color(0xFF795548),
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
+            // A static pointer indicating the 'top' of the plot
+            Text("▲", color = Color.Red, fontSize = 24.sp)
             // The main interactive area containing the plot and compass
+            Spacer(modifier = Modifier.height(16.dp))
             Box(
                 modifier = Modifier
                     .size(320.dp),
@@ -129,18 +139,9 @@ fun VastuCompassScreen(navController: NavController) {
                     Compass(rotationAngle = rotationAngle)
                 }
 
-                // A static pointer indicating the 'top' of the plot
-                Box(
-                    modifier = Modifier
-                        .align(Alignment.TopCenter)
-                        .size(24.dp, 36.dp),
-                    contentAlignment = Alignment.Center
-                ){
-                    Text("▲", color = Color.Red, fontSize = 24.sp)
-                }
             }
 
-            Spacer(modifier = Modifier.height(48.dp))
+            Spacer(modifier = Modifier.height(124.dp))
 
             // Button to confirm the selected direction
             Button(
@@ -192,7 +193,7 @@ fun Compass(rotationAngle: Float) {
                 rotationZ = rotationAngle
             }
     ) {
-        val radius = size.minDimension / 2f - 20f
+        val radius = size.minDimension / 2f - 20f + 50f
         val centerX = center.x
         val centerY = center.y
 

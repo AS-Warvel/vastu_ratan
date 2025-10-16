@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "11215078552",
+    "project_id": "vastu-app-b4403",
+    "storage_bucket": "vastu-app-b4403.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:11215078552:android:ab3bcee141b65f0e787ced",
+        "android_client_info": {
+          "package_name": "com.example.project_vastuapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzKCLjLhbWlEdhP69W0KXNiclMalazUNw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

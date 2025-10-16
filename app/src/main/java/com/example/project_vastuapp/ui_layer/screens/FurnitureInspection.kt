@@ -136,6 +136,7 @@ fun FurnitureSelector(
     selectedFurniture: VastuObject?,
     onFurnitureSelected: (VastuObject) -> Unit
 ) {
+    println(furnitureList)
     LazyRow(
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp)
