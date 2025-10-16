@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import com.example.project_vastuapp.R
 import com.example.project_vastuapp.ui.theme.black
 import com.example.project_vastuapp.ui.theme.buttonContainer
+import com.example.project_vastuapp.ui.theme.vastuLogoColor
 
 @Composable
 fun CheckVastuButton(enableAddFurnitureScreen : () -> Unit) {
@@ -45,7 +46,7 @@ fun CheckVastuButton(enableAddFurnitureScreen : () -> Unit) {
 fun VastuLogo() {
     Icon(
         painter = painterResource(id = R.drawable.vastu_ratan_logo),
-        tint = Color(0xFFF68B6C),
+        tint = vastuLogoColor,
         contentDescription = "Vastu Ratan App Logo"
     )
 }
