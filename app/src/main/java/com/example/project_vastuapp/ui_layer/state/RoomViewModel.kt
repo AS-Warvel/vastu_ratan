@@ -48,7 +48,7 @@ class RoomViewModel : ViewModel() {
     val uiState: StateFlow<RoomUiState> = _uiState.asStateFlow()
 
     private val directions = listOf(
-        "Not Present", "N", "NE", "E", "SE", "S", "SW", "W", "NW"
+        "Not Present", "North", "Northeast", "East", "Southeast", "South", "Southwest", "West", "Northwest"
     )
 
     init {
@@ -110,9 +110,7 @@ class RoomViewModel : ViewModel() {
             "n" to "north", "s" to "south", "e" to "east", "w" to "west"
         )
 
-        // Check for exact matches (e.g., NE, SW) or contained cardinal directions
-        return recommendedText.contains(selectedDir) ||
-                (cardinalMap[selectedDir]?.let { recommendedText.contains(it) } ?: false)
+        return recommendedText.contains(selectedDir)
     }
 }
 

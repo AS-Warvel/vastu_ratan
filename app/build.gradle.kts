@@ -66,20 +66,20 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx")
     implementation("com.google.code.gson:gson:2.10.1")
 
-    // CameraX dependencies
-    val camerax_version = "1.3.1" // Use a stable version
-    implementation("androidx.camera:camera-core:$camerax_version")
-    implementation("androidx.camera:camera-camera2:$camerax_version")
-    implementation("androidx.camera:camera-lifecycle:$camerax_version")
-    implementation("androidx.camera:camera-view:$camerax_version")
-
-    // ML Kit Object Detection dependencies
-    // This is the dependency for on-device object detection
-    implementation("com.google.mlkit:object-detection:17.0.1")
-
-    // ML Kit Defaults (contains the ObjectDetectorOptions, etc.)
-    // Ensure you have the ML Kit defaults library for the options class.
-    implementation("com.google.mlkit:object-detection-common:17.0.0")
+//    // CameraX dependencies
+//    val camerax_version = "1.3.1" // Use a stable version
+//    implementation("androidx.camera:camera-core:$camerax_version")
+//    implementation("androidx.camera:camera-camera2:$camerax_version")
+//    implementation("androidx.camera:camera-lifecycle:$camerax_version")
+//    implementation("androidx.camera:camera-view:$camerax_version")
+//
+//    // ML Kit Object Detection dependencies
+//    // This is the dependency for on-device object detection
+//    implementation("com.google.mlkit:object-detection:17.0.1")
+//
+//    // ML Kit Defaults (contains the ObjectDetectorOptions, etc.)
+//    // Ensure you have the ML Kit defaults library for the options class.
+//    implementation("com.google.mlkit:object-detection-common:17.0.0")
 
     // Kotlin Coroutines for Flow/Channel
     val coroutines_version = "1.8.1" // <== UPDATED VERSION HERE

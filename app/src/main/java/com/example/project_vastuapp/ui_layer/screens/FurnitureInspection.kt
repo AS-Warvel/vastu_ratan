@@ -70,16 +70,16 @@ fun FurnitureInspectionScreen(
                 selectedRoom = selectedRoom,
                 onRoomSelected = { room -> furnitureViewModel.selectRoom(room) }
             )
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
             // Information Card
-            Box(Modifier.height(460.dp))
+            Box(Modifier.height(420.dp))
             {
                 selectedFurniture?.let {
                     VastuInfoCard(it)
                 }
             }
-            Spacer(modifier = Modifier.height(90.dp))
+            Spacer(modifier = Modifier.weight(1f))
 
             // Furniture Icon Selector
             Text(
@@ -189,7 +189,7 @@ fun VastuInfoCard(furniture: VastuObject) {
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
     ) {
         Column(
-            modifier = Modifier.padding(20.dp).fillMaxWidth().fillMaxHeight(),
+            modifier = Modifier.padding(bottom = 16.dp, start = 16.dp, end = 16.dp).fillMaxWidth().fillMaxHeight(),
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.Center
         ) {
@@ -222,9 +222,15 @@ fun VastuInfoCard(furniture: VastuObject) {
             Spacer(modifier = Modifier.height(24.dp))
 
             // Correct Direction Section
+            var directionText: String = ""
+            for (direction in furniture.correctDirection) {
+                directionText = directionText + direction + ","
+            }
+            directionText = directionText.dropLast(1)
+
             InfoSection(
                 title = "Right Direction",
-                text = furniture.correctDirection,
+                text = directionText,
                 reason = furniture.whyThisDirection,
                 icon = Icons.Default.CheckCircle,
                 iconColor = MaterialTheme.colorScheme.primary

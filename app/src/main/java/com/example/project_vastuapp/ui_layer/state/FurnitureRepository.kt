@@ -11,7 +11,7 @@ data class VastuObject(
     val room: String,
     val furnitureType: String,
     val icon: ImageVector,
-    val correctDirection: String,
+    val correctDirection: List<String>,
     val whyThisDirection: String,
     val directionsToAvoid: String? = null
 )
@@ -84,12 +84,11 @@ object FurnitureInspectionDataSource {
 
         val furnitureList = mutableListOf<RoomFurnitureItem>()
         for (item in listFurnitureData) {
-            val directions = item.direction.split(Regex(" or | / |,"))
-                .map { it.trim() }
+
             furnitureList.add(
                 RoomFurnitureItem(
                     furnitureType = item.furnitureType,
-                    correctDirections = directions,
+                    correctDirections = item.direction,
                     whyThisDirection = item.benefits,
                     directionsToAvoid = item.avoid,
                     room = item.room,
@@ -105,8 +104,8 @@ object FurnitureInspectionDataSource {
 
         val furnitureList = mutableListOf<PlacementVastuObject>()
         for (item in listFurnitureData) {
-            val directions = item.direction.split(Regex(" or | / |,"))
-                .map { it.trim() }
+//            val directions = item.direction.split(Regex(" or | / |,"))
+//                .map { it.trim() }
             furnitureList.add(
                 PlacementVastuObject(
                     room = item.room,

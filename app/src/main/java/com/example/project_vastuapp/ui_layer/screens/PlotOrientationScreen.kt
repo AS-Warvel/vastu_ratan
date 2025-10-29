@@ -78,7 +78,7 @@ fun VastuCompassScreen(navController: NavController) {
                 Text("Set Plot Direction", style = MaterialTheme.typography.headlineLarge)
             }
 
-            Spacer(modifier = Modifier.height(120.dp))
+            Spacer(modifier = Modifier.height(32.dp))
             Text(
                 text = "Drag the compass to align with the North direction of your plot.",
                 fontSize = 16.sp,
@@ -91,16 +91,16 @@ fun VastuCompassScreen(navController: NavController) {
             // A static pointer indicating the 'top' of the plot
             Text("▲", color = Color.Red, fontSize = 24.sp)
             // The main interactive area containing the plot and compass
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(12.dp))
             Box(
                 modifier = Modifier
-                    .size(320.dp),
+                    .size(300.dp),
                 contentAlignment = Alignment.Center
             ) {
                 // The square plot representation
                 Box(
                     modifier = Modifier
-                        .size(220.dp)
+                        .size(190.dp)
                         .clip(RoundedCornerShape(8.dp))
                         .background(Color(0xFFD2B48C)) // Tan color for the plot
                 )
@@ -141,7 +141,7 @@ fun VastuCompassScreen(navController: NavController) {
 
             }
 
-            Spacer(modifier = Modifier.height(124.dp))
+            Spacer(modifier = Modifier.weight(1f))
 
             // Button to confirm the selected direction
             Button(
@@ -168,6 +168,7 @@ fun VastuCompassScreen(navController: NavController) {
                     modifier = Modifier.padding(vertical = 8.dp)
                 )
             }
+            Spacer(modifier = Modifier.height(48.dp))
         }
     }
 }
@@ -193,7 +194,7 @@ fun Compass(rotationAngle: Float) {
                 rotationZ = rotationAngle
             }
     ) {
-        val radius = size.minDimension / 2f - 20f + 50f
+        val radius = size.minDimension / 2f - 20f + 40f
         val centerX = center.x
         val centerY = center.y
 

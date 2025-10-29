@@ -126,7 +126,7 @@ fun HomeScreen(navController: NavController) {
                 Text("Vastu Ratan", fontFamily = titleFont, fontSize = 46.sp)
             }
 
-            Spacer(modifier = Modifier.height(150.dp))
+            Spacer(modifier = Modifier.height(120.dp))
 
             // --- Grid of Buttons ---
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -153,10 +153,12 @@ fun HomeScreen(navController: NavController) {
             }
 
 
-            Spacer(modifier = Modifier.height(210.dp))
+            Spacer(modifier = Modifier.weight(1f))
 
             // --- Daily Vastu Tip Card ---
             DailyVastuTipCard()
+
+            Spacer(modifier = Modifier.height(20.dp))
         }
     }
 }

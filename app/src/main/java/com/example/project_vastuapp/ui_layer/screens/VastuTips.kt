@@ -49,7 +49,6 @@ fun VastuTipsScreen(vastuTipsViewModel: VastuTipsViewModel = viewModel(), navCon
     val categories = vastuTipsViewModel.categories
 
     Scaffold(
-
         containerColor = MaterialTheme.colorScheme.background
     ) { paddingValues ->
         Column(
