@@ -18,9 +18,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.project_vastuapp.ui_layer.state.GeetaQuote
+import com.example.project_vastuapp.data_layer.GeetaQuote
 import com.example.project_vastuapp.ui_layer.state.GeetaViewModel
 import com.example.project_vastuapp.ui.theme.PrimaryGreen
 import com.example.project_vastuapp.ui.theme.PrimaryTanBrown
@@ -31,7 +32,7 @@ import com.example.project_vastuapp.ui.theme.LightAccent
 @Composable
 fun LifeLessonsScreen(navController: NavController,geetaViewModel: GeetaViewModel = viewModel()) {
     // Observe the quotes list from the ViewModel
-    val quotes by geetaViewModel.quotes
+    val quotes by geetaViewModel.quotes.collectAsStateWithLifecycle()
     var selectedTabIndex by remember { mutableStateOf(0) }
     val tabs = listOf("All Quotes", "Favourites")
 
@@ -80,11 +81,11 @@ fun LifeLessonsScreen(navController: NavController,geetaViewModel: GeetaViewMode
             when (selectedTabIndex) {
                 0 -> QuoteList(
                     quotes = quotes,
-                    onToggleFavourite = { geetaViewModel.toggleFavourite(it) }
+                    onToggleFavourite = { geetaViewModel.onFavouriteTapped(it) }
                 )
                 1 -> QuoteList(
                     quotes = quotes.filter { it.isFavourite },
-                    onToggleFavourite = { geetaViewModel.toggleFavourite(it) },
+                    onToggleFavourite = { geetaViewModel.onFavouriteTapped(it) },
                     emptyMessage = "You haven't added any quotes to your favourites yet."
                 )
             }
@@ -95,7 +96,7 @@ fun LifeLessonsScreen(navController: NavController,geetaViewModel: GeetaViewMode
 @Composable
 fun QuoteList(
     quotes: List<GeetaQuote>,
-    onToggleFavourite: (Int) -> Unit,
+    onToggleFavourite: (GeetaQuote) -> Unit,
     emptyMessage: String? = null
 ) {
     if (quotes.isEmpty() && emptyMessage != null) {
@@ -125,7 +126,7 @@ fun QuoteList(
 }
 
 @Composable
-fun QuoteCard(quote: GeetaQuote, onToggleFavourite: (Int) -> Unit) {
+fun QuoteCard(quote: GeetaQuote, onToggleFavourite: (GeetaQuote) -> Unit) {
     Card(
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(containerColor = BackgroundBeige),
@@ -137,14 +138,14 @@ fun QuoteCard(quote: GeetaQuote, onToggleFavourite: (Int) -> Unit) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "“${quote.text}”",
+                text = "“${quote.quote}”",
                 color = DarkText,
                 fontSize = 16.sp,
                 lineHeight = 24.sp,
                 modifier = Modifier.weight(1f)
             )
             Spacer(modifier = Modifier.width(16.dp))
-            IconButton(onClick = { onToggleFavourite(quote.id) }) {
+            IconButton(onClick = { onToggleFavourite(quote) }) {
                 Icon(
                     imageVector = if (quote.isFavourite) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
                     contentDescription = "Toggle Favourite",

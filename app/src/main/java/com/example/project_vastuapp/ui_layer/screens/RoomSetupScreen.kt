@@ -48,10 +48,10 @@ import kotlinx.coroutines.flow.update
 import org.json.JSONArray
 import java.util.UUID
 import com.example.project_vastuapp.ui_layer.state.RoomViewModel
-import com.example.project_vastuapp.ui_layer.state.vastuJsonData
+//import com.example.project_vastuapp.ui_layer.state.vastuJsonData
 import com.example.project_vastuapp.ui_layer.state.RoomUiState
 import com.example.project_vastuapp.ui_layer.state.RoomFurnitureItem
-import com.example.project_vastuapp.ui_layer.state.getIconForFurniture
+//import com.example.project_vastuapp.ui_layer.state.getIconForFurniture
 
 
 // --- 5. UI SCREEN 1: INSPECTION SCREEN ---

@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.absoluteOffset
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -51,6 +52,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.project_vastuapp.ui.theme.BackgroundBeige
 import com.example.project_vastuapp.ui.theme.DarkText
@@ -58,6 +60,7 @@ import com.example.project_vastuapp.ui.theme.ErrorRed
 import com.example.project_vastuapp.ui.theme.PrimaryGreen
 import com.example.project_vastuapp.ui.theme.PrimaryTanBrown
 import com.example.project_vastuapp.ui.theme.SuccessGreen
+import com.example.project_vastuapp.ui_layer.state.FurnitureDetailsViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -65,7 +68,7 @@ import kotlinx.coroutines.flow.update
 import com.example.project_vastuapp.ui_layer.state.RoomViewModel
 import com.example.project_vastuapp.ui_layer.state.RoomUiState
 import com.example.project_vastuapp.ui_layer.state.RoomFurnitureItem
-import com.example.project_vastuapp.ui_layer.state.getIconForFurniture
+//import com.example.project_vastuapp.ui_layer.state.getIconForFurniture
 
 
 // --- 6. UI SCREEN 2: RESULTS SCREEN ---
@@ -135,11 +138,23 @@ fun ResultCard(item: RoomFurnitureItem, isCorrect: Boolean) {
     var expanded by remember { mutableStateOf(false) }
     val cardColor = if (isCorrect) SuccessGreen else ErrorRed
     val borderColor = if (isCorrect) SuccessGreen else ErrorRed
+    val detailsViewModel: FurnitureDetailsViewModel = viewModel()
+    val details by detailsViewModel.dataString.collectAsStateWithLifecycle()
 
     Card(
-        modifier = Modifier
+        modifier = Modifier.absoluteOffset()
             .fillMaxWidth()
-            .clickable { expanded = !expanded },
+            .clickable {
+                expanded = !expanded
+                if(details == "Loading...") {
+                    detailsViewModel.getFurniturePlacementReasonInfo(
+                        room = item.room,
+                        furnitureType = item.furnitureType,
+                        isDirectionCorrect = isCorrect,
+                        default = item.whyThisDirection
+                    )
+                }
+               },
         shape = RoundedCornerShape(12.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         colors = CardDefaults.cardColors(containerColor = cardColor),
@@ -177,6 +192,9 @@ fun ResultCard(item: RoomFurnitureItem, isCorrect: Boolean) {
                 enter = fadeIn(animationSpec = tween(300)) + slideInVertically(),
                 exit = fadeOut(animationSpec = tween(300)) + slideOutVertically()
             ) {
+                if(details == "not found") {
+
+                }
                 Column {
                     Divider(
                         modifier = Modifier.padding(vertical = 12.dp),
@@ -186,7 +204,7 @@ fun ResultCard(item: RoomFurnitureItem, isCorrect: Boolean) {
                     if (isCorrect) {
                         ResultInfoRow(
                             title = "Significance:",
-                            details = item.whyThisDirection
+                            details = details
                         )
                     } else {
                         ResultInfoRow(
@@ -200,7 +218,7 @@ fun ResultCard(item: RoomFurnitureItem, isCorrect: Boolean) {
                         )
                         item.directionsToAvoid?.let {
                             Spacer(modifier = Modifier.height(8.dp))
-                            ResultInfoRow(title = "Directions to Avoid:", details = it)
+                            ResultInfoRow(title = "Directions to Avoid:", details = details)
                         }
                     }
                 }

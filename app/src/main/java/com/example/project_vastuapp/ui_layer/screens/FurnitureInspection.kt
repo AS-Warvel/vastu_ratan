@@ -31,8 +31,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.project_vastuapp.data_layer.VastuObject
 import com.example.project_vastuapp.ui_layer.state.FurnitureViewModel
-import com.example.project_vastuapp.ui_layer.state.VastuObject
 
 @Composable
 fun FurnitureInspectionScreen(
@@ -136,7 +136,6 @@ fun FurnitureSelector(
     selectedFurniture: VastuObject?,
     onFurnitureSelected: (VastuObject) -> Unit
 ) {
-    println(furnitureList)
     LazyRow(
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp)
@@ -221,16 +220,9 @@ fun VastuInfoCard(furniture: VastuObject) {
             }
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Correct Direction Section
-            var directionText: String = ""
-            for (direction in furniture.correctDirection) {
-                directionText = directionText + direction + ","
-            }
-            directionText = directionText.dropLast(1)
-
             InfoSection(
                 title = "Right Direction",
-                text = directionText,
+                text = furniture.correctDirection,
                 reason = furniture.whyThisDirection,
                 icon = Icons.Default.CheckCircle,
                 iconColor = MaterialTheme.colorScheme.primary

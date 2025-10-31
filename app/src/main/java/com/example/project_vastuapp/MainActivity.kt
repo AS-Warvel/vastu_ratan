@@ -38,31 +38,38 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+//import com.example.project_vastuapp.data_layer.GeetaQuotesDataSource
 import com.example.project_vastuapp.ui_layer.screens.FurnitureInspectionScreen
 import com.example.project_vastuapp.ui_layer.screens.HouseLayouScreen
 import com.example.project_vastuapp.ui_layer.screens.LifeLessonsScreen
 import com.example.project_vastuapp.ui_layer.screens.NewResultsScreen
 import com.example.project_vastuapp.ui_layer.screens.RoomInspectionScreen
+import com.example.project_vastuapp.ui_layer.screens.SplashScreen
 import com.example.project_vastuapp.ui_layer.screens.VastuIntroScreen
 import com.example.project_vastuapp.ui_layer.screens.VastuTipsScreen
 import com.example.project_vastuapp.ui_layer.screens.VastuCompassScreen
 import com.example.project_vastuapp.ui_layer.state.RoomViewModel
 import com.example.project_vastuapp.ui_layer.state.FurnitureViewModel
-
+import com.example.project_vastuapp.ui_layer.state.GeetaViewModel
 
 // Main entry point for the App
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+
         setContent {
             VastuAppTheme {
 
                 val navController = rememberNavController()
                 val RoomInspectionViewModel: RoomViewModel = viewModel()
                 val furnitureViewModel: FurnitureViewModel = viewModel()
+//                val geetaViewModel: GeetaViewModel = viewModel()
+//                geetaViewModel.onUploadButtonTapped()
 
-                NavHost(navController = navController, startDestination = "home") {
+                NavHost(navController = navController, startDestination = "splash") {
                     composable("home") { HomeScreen(navController) }
                     composable("VastuIntro") { VastuIntroScreen(navController) }
                     composable("VastuTips") { VastuTipsScreen(navController = navController) }
@@ -75,10 +82,21 @@ class MainActivity : ComponentActivity() {
                         route = "House/{value}",
                         arguments = listOf(navArgument("value") { type = NavType.FloatType })
                     ) {
-                        backStackEntry ->
+                            backStackEntry ->
                         val value = backStackEntry.arguments?.getFloat("value")?.toDouble() ?: 0.0
                         HouseLayouScreen(navController = navController, northAngle = value) }
-//                    composable("menu") { MenuScreen(navController) }
+                    composable("splash") {
+                        SplashScreen(
+                            onTimeout = {
+                                // Navigate to home and clear the back stack
+                                navController.navigate("home") {
+                                    popUpTo("splash") {
+                                        inclusive = true
+                                    }
+                                }
+                            }
+                        )
+                    }
                 }
             }
         }

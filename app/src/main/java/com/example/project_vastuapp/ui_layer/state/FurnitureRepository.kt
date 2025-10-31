@@ -4,23 +4,13 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.*
 import com.example.project_vastuapp.data_layer.FurnitureDataSource
+import com.example.project_vastuapp.data_layer.PlacementVastuObject
+import com.example.project_vastuapp.data_layer.VastuObject
 
 //import com.example.project_vastuapp.data_layer.FurnitureDataSource
 
-data class VastuObject(
-    val room: String,
-    val furnitureType: String,
-    val icon: ImageVector,
-    val correctDirection: List<String>,
-    val whyThisDirection: String,
-    val directionsToAvoid: String? = null
-)
 
-data class PlacementVastuObject(
-    val room: String,
-    val `object`: String, // 'object' is a keyword in Kotlin, so use backticks
-    val recommendedDirections: List<String>,
-)
+
 
 object FurnitureInspectionDataSource {
 
@@ -84,11 +74,12 @@ object FurnitureInspectionDataSource {
 
         val furnitureList = mutableListOf<RoomFurnitureItem>()
         for (item in listFurnitureData) {
-
+            val directions = item.direction.split(Regex(" or | / |,"))
+                .map { it.trim() }
             furnitureList.add(
                 RoomFurnitureItem(
                     furnitureType = item.furnitureType,
-                    correctDirections = item.direction,
+                    correctDirections = directions,
                     whyThisDirection = item.benefits,
                     directionsToAvoid = item.avoid,
                     room = item.room,
@@ -104,8 +95,8 @@ object FurnitureInspectionDataSource {
 
         val furnitureList = mutableListOf<PlacementVastuObject>()
         for (item in listFurnitureData) {
-//            val directions = item.direction.split(Regex(" or | / |,"))
-//                .map { it.trim() }
+            val directions = item.direction.split(Regex(" or | / |,"))
+                .map { it.trim() }
             furnitureList.add(
                 PlacementVastuObject(
                     room = item.room,
