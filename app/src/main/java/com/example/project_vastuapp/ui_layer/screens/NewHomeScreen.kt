@@ -17,6 +17,7 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.MeetingRoom
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MenuBook
+import androidx.compose.material.icons.filled.PhotoCamera
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.TipsAndUpdates
 import androidx.compose.material3.Button
@@ -149,6 +150,20 @@ fun HomeScreen(navController: NavController) {
                     VastuGridButton("Know Vastu", Icons.Default.Info, ColorSand, onClick = {navController.navigate("VastuIntro")})
                     VastuGridButton("Vastu Tips", Icons.Default.TipsAndUpdates, ColorBrown, onClick = {navController.navigate("VastuTips")}) // Duplicate for design
                     VastuGridButton("Geeta Teachings", Icons.Default.MenuBook, ColorSageGreen, onClick = {navController.navigate("Geeta")}) // Duplicate for design
+
+                }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    VastuGridButton(
+                        text = "Camera",
+                        icon = Icons.Default.PhotoCamera, // You can replace with a more fitting camera icon
+                        iconBackground = ColorTerracotta,
+                        onClick = {
+                            navController.navigate("CameraPage") // 👈 opens HomePage()
+                        }
+                    )
                 }
             }
 

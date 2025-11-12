@@ -1,0 +1,247 @@
+[
+  {
+    "room": "Living Room",
+    "object": "Sofa Set",
+    "recommended_direction": "South or West wall",
+    "benefit": "Promotes stability and grounding in social interactions.",
+    "avoid": "North-East – blocks spiritual and energy flow."
+  },
+  {
+    "room": "Living Room",
+    "object": "TV / Entertainment Unit",
+    "recommended_direction": "South-East wall",
+    "benefit": "Keeps electronic energy aligned with Fire element.",
+    "avoid": "North wall – causes restlessness."
+  },
+  {
+    "room": "Living Room",
+    "object": "Main Entrance Door",
+    "recommended_direction": "North or East",
+    "benefit": "Attracts positive energy and prosperity.",
+    "avoid": "South-West – brings obstacles and conflict."
+  },
+  {
+    "room": "Living Room",
+    "object": "Center Table",
+    "recommended_direction": "Center (Brahmasthan), keep light and low",
+    "benefit": "Allows free energy flow.",
+    "avoid": "Center with heavy furniture – blocks energy flow."
+  },
+  {
+    "room": "Living Room",
+    "object": "Wall Clock",
+    "recommended_direction": "North or East wall",
+    "benefit": "Symbol of progress and positive movement.",
+    "avoid": "South wall – associated with stagnation."
+  },
+  {
+    "room": "Living Room",
+    "object": "Showcase / Cabinet",
+    "recommended_direction": "South or West wall",
+    "benefit": "Balances heavy elements, giving stability.",
+    "avoid": "North-East – adds heaviness to divine corner."
+  },
+  {
+    "room": "Living Room",
+    "object": "Mirror / Decor Mirror",
+    "recommended_direction": "North or East wall",
+    "benefit": "Reflects positive energy and abundance.",
+    "avoid": "South or West – reflects negative energy."
+  },
+  {
+    "room": "Living Room",
+    "object": "Aquarium / Water Feature",
+    "recommended_direction": "North or East",
+    "benefit": "Brings calmness, wealth, and harmony.",
+    "avoid": "South – Fire element conflict."
+  },
+  {
+    "room": "Living Room",
+    "object": "Indoor Plants",
+    "recommended_direction": "North-East or East",
+    "benefit": "Purifies energy and enhances freshness.",
+    "avoid": "South-West – causes energy imbalance."
+  },
+  {
+    "room": "Master Bedroom",
+    "object": "Bed",
+    "recommended_direction": "Head towards South or East",
+    "benefit": "Promotes sound sleep, health, and longevity.",
+    "avoid": "North – may cause disturbed sleep."
+  },
+  {
+    "room": "Master Bedroom",
+    "object": "Wardrobe / Almirah",
+    "recommended_direction": "South-West",
+    "benefit": "Symbol of financial stability and strength.",
+    "avoid": "North-East – adds heaviness to sacred corner."
+  },
+  {
+    "room": "Master Bedroom",
+    "object": "Dressing Table / Mirror",
+    "recommended_direction": "North or East wall (avoid facing bed)",
+    "benefit": "Enhances positivity and freshness.",
+    "avoid": "Facing bed – reflects energy back during sleep."
+  },
+  {
+    "room": "Master Bedroom",
+    "object": "TV / Electronics",
+    "recommended_direction": "South-East wall",
+    "benefit": "Keeps Fire element balanced.",
+    "avoid": "North-East – disrupts peace and calmness."
+  },
+  {
+    "room": "Master Bedroom",
+    "object": "Safe / Locker",
+    "recommended_direction": "South wall facing North",
+    "benefit": "Attracts wealth and prosperity.",
+    "avoid": "East or North-East – causes financial instability."
+  },
+  {
+    "room": "Master Bedroom",
+    "object": "Clock / Artwork",
+    "recommended_direction": "East wall",
+    "benefit": "Maintains positive flow of time energy.",
+    "avoid": "South – symbolizes delay and struggle."
+  },
+  {
+    "room": "Guest Room",
+    "object": "Bed",
+    "recommended_direction": "Head towards West or South",
+    "benefit": "Promotes comfort and hospitality.",
+    "avoid": "North – causes restless sleep."
+  },
+  {
+    "room": "Guest Room",
+    "object": "Wardrobe / Storage",
+    "recommended_direction": "South or West",
+    "benefit": "Keeps energy grounded and stable.",
+    "avoid": "North-East – adds weight to sacred corner."
+  },
+  {
+    "room": "Guest Room",
+    "object": "TV / Entertainment Unit",
+    "recommended_direction": "South-East",
+    "benefit": "Balances Fire energy for entertainment.",
+    "avoid": "North wall – brings distraction and restlessness."
+  },
+  {
+    "room": "Guest Room",
+    "object": "Mirror",
+    "recommended_direction": "North or East wall",
+    "benefit": "Enhances brightness and positivity.",
+    "avoid": "South wall – reflects negative energy."
+  },
+  {
+    "room": "Guest Room",
+    "object": "Decor / Portraits",
+    "recommended_direction": "North or East",
+    "benefit": "Creates welcoming and uplifting environment.",
+    "avoid": "South-West – gives heavy feeling to the room."
+  },
+  {
+    "room": "Kitchen",
+    "object": "Cooking Stove / Gas Range",
+    "recommended_direction": "South-East corner",
+    "benefit": "Aligns with Fire element and promotes health.",
+    "avoid": "North-East – clashes with Water element."
+  },
+  {
+    "room": "Kitchen",
+    "object": "Sink / Wash Area",
+    "recommended_direction": "North-East",
+    "benefit": "Maintains purity and balance of Water element.",
+    "avoid": "South-East – Fire-Water conflict."
+  },
+  {
+    "room": "Kitchen",
+    "object": "Refrigerator",
+    "recommended_direction": "South-West or West",
+    "benefit": "Stabilizes food energy and preserves freshness.",
+    "avoid": "North-East – disrupts positive energy flow."
+  },
+  {
+    "room": "Kitchen",
+    "object": "Storage Cabinets",
+    "recommended_direction": "South or West wall",
+    "benefit": "Adds grounding and organization.",
+    "avoid": "North-East – heaviness causes imbalance."
+  },
+  {
+    "room": "Kitchen",
+    "object": "Water Filter / Jug",
+    "recommended_direction": "North-East",
+    "benefit": "Represents purity and life force.",
+    "avoid": "South-East – causes imbalance of Fire and Water elements."
+  },
+  {
+    "room": "Kitchen",
+    "object": "Exhaust Fan / Window",
+    "recommended_direction": "East wall",
+    "benefit": "Removes negativity and keeps air fresh.",
+    "avoid": "South wall – blocks positive light and airflow."
+  },
+  {
+    "room": "Kitchen",
+    "object": "Dustbin",
+    "recommended_direction": "South-West corner",
+    "benefit": "Keeps negative energy contained.",
+    "avoid": "North-East – pollutes sacred energy zone."
+  },
+  {
+    "room": "Office / Study Room",
+    "object": "Study / Work Desk",
+    "recommended_direction": "East or North facing",
+    "benefit": "Improves focus, clarity, and concentration.",
+    "avoid": "South – drains energy and motivation."
+  },
+  {
+    "room": "Office / Study Room",
+    "object": "Chair (Sitting Position)",
+    "recommended_direction": "Face East or North",
+    "benefit": "Brings success and growth.",
+    "avoid": "South-West – induces laziness and confusion."
+  },
+  {
+    "room": "Office / Study Room",
+    "object": "Bookshelf / Cabinet",
+    "recommended_direction": "South or West wall",
+    "benefit": "Symbol of knowledge stability.",
+    "avoid": "North-East – adds heaviness to divine space."
+  },
+  {
+    "room": "Office / Study Room",
+    "object": "Computer / Laptop",
+    "recommended_direction": "South-East",
+    "benefit": "Keeps electronic Fire energy aligned.",
+    "avoid": "North-East – reduces calmness and clarity."
+  },
+  {
+    "room": "Office / Study Room",
+    "object": "Vision Board / Motivational Art",
+    "recommended_direction": "North wall",
+    "benefit": "Encourages aspiration and goal orientation.",
+    "avoid": "South – symbolically reflects negativity."
+  },
+  {
+    "room": "Office / Study Room",
+    "object": "Lamp / Light Source",
+    "recommended_direction": "South-East or East",
+    "benefit": "Encourages enlightenment and creativity.",
+    "avoid": "North-West – causes distraction."
+  },
+  {
+    "room": "Office / Study Room",
+    "object": "File / Document Storage",
+    "recommended_direction": "South-West",
+    "benefit": "Ensures stability and safe record-keeping.",
+    "avoid": "North-East – causes confusion and imbalance."
+  },
+  {
+    "room": "Office / Study Room",
+    "object": "Meditation / Thinking Corner",
+    "recommended_direction": "North-East",
+    "benefit": "Inspires creativity and calmness.",
+    "avoid": "South – causes agitation and stress."
+  }
+]

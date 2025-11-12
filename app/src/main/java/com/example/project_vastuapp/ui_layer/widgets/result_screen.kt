@@ -25,6 +25,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.project_vastuapp.datalayer.FurnitureAnalysisOutput
 import com.example.project_vastuapp.ui.theme.black
 import com.example.project_vastuapp.ui.theme.buttonContainer
 import com.example.project_vastuapp.ui.theme.darkGreen
@@ -34,7 +35,7 @@ import com.example.project_vastuapp.ui.theme.lightRed
 
 @SuppressLint("InvalidColorHexValue")
 @Composable
-fun FurnitureListItemCard(furnitureObject: FurnitureOutput) {
+fun FurnitureListItemCard(furnitureObject: FurnitureAnalysisOutput) {
     Card (Modifier.padding(16.dp).height(100.dp), colors = CardDefaults.cardColors(
         containerColor = if(furnitureObject.isCorrect) lightGreen else lightRed
     ), elevation = CardDefaults.cardElevation(2.dp)) {
